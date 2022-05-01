@@ -1,15 +1,11 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import Loader from "../components/Loader";
-import styles from "../styles/Home.module.css";
-import toast from "react-hot-toast";
 import { firestore, fromMillis, postToJSON } from "../lib/firebase";
 import { useState } from "react";
 import PostFeed from "../components/PostFeed";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 //max posts to query per page;
-const LIMIT = 5;
+const LIMIT = 1;
 
 export async function getServerSideProps(context) {
   const postsQuery = firestore
@@ -47,7 +43,7 @@ export default function Home(props) {
       .startAfter(cursor)
       .limit(LIMIT);
 
-    const newPosts = (await query.get()).docs.map((doc) => doc.data);
+    const newPosts = (await query.get()).docs.map((doc) => doc.data());
 
     setPosts(posts.concat(newPosts));
     setLoading(false);
@@ -58,16 +54,33 @@ export default function Home(props) {
   };
 
   return (
-    <main>
+    <main className="pagecontent">
+      <Banner />
       <PostFeed posts={posts} />
 
       {!loading && !postEnd && (
-        <button onClick={getMorePosts}>Load More</button>
+        <button className="btn-primary-outline" onClick={getMorePosts}>
+          Load More
+        </button>
       )}
 
       <Loader show={loading} />
 
       {postEnd && "No more posts to show!"}
     </main>
+  );
+}
+function Banner() {
+  return (
+    <div className="d-flex banner">
+      <div className="banner-content">
+        <h3>{"A blog for a developer from a developer!"}</h3>
+      </div>
+      <div className="banner-image">
+        <div>
+          <img src="assets/banner.svg" alt="banner" />
+        </div>
+      </div>
+    </div>
   );
 }

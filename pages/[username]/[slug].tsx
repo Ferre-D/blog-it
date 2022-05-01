@@ -3,6 +3,9 @@ import { firestore, getUserWithUsername, postToJSON } from "../../lib/firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { DocumentData, DocumentReference } from "firebase/firestore";
 import PostContent from "../../components/PostContent";
+import AuthCheck from "../../components/AuthCheck";
+import RocketButton from "../../components/RocketButton";
+import Link from "next/link";
 
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
@@ -12,7 +15,6 @@ export async function getStaticProps({ params }) {
 
   if (userDoc) {
     const postRef = userDoc.ref.collection("posts").doc(slug);
-    console.log(await (await postRef.get()).exists);
 
     post = postToJSON(await postRef.get());
 
@@ -58,10 +60,23 @@ export default function PostPage(props) {
         <PostContent post={post} />
       </section>
 
-      <aside className="card">
+      <aside className="card p-1">
         <p>
           <strong>{post.rocketCount || 0} 🚀</strong>
         </p>
+        <AuthCheck
+          fallback={
+            <Link href={"/enter"}>
+              <button>Sign up</button>
+            </Link>
+          }
+        >
+          <RocketButton postRef={postRef} />
+          <p>
+            Let the creator know that you liked his post by clicking the 🚀
+            button.
+          </p>
+        </AuthCheck>
       </aside>
     </main>
   );

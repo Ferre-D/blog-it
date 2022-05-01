@@ -1,6 +1,6 @@
 .container {
-  min-height: 100vh;
   display: flex;
+  margin-top: 70px;
 }
 
 .container section {

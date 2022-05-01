@@ -36,8 +36,8 @@ function PostManager() {
       {post && (
         <>
           <section>
-            <h1>{post.title}</h1>
-            <p>ID: {post.slug}</p>
+            <h1 className={styles.contenttitle}>{post.title}</h1>
+            <p className={styles.contentid}>ID: {post.slug}</p>
 
             <PostForm
               postRef={postRef}
@@ -81,7 +81,7 @@ function PostForm({ defaultValues, postRef, preview }) {
   return (
     <form onSubmit={handleSubmit(updatePost)}>
       {preview && (
-        <div className="card">
+        <div className="card p-1">
           <ReactMarkdown>{watch("content")}</ReactMarkdown>
         </div>
       )}
@@ -111,10 +111,11 @@ function PostForm({ defaultValues, postRef, preview }) {
           <input
             type="checkbox"
             name="published"
+            id="published"
             className={styles.checkbox}
             {...register("published")}
           />
-          <label>published</label>
+          <label htmlFor="published">published</label>
         </fieldset>
         <button
           type="submit"

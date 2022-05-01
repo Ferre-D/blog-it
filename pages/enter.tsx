@@ -27,7 +27,7 @@ function SignInButton() {
   };
   return (
     <button className="btn-google" onClick={() => SignInWithGoogle()}>
-      <img src="google.png" /> Sign in with Google
+      <img src="assets/google.png" /> Sign in with Google
     </button>
   );
 }

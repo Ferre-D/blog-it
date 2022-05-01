@@ -12,11 +12,13 @@ import toast from "react-hot-toast";
 
 export default function AdminPostsPage({}) {
   return (
-    <main>
-      <AuthCheck>
-        <PostList />
-        <CreateNewPost />
-      </AuthCheck>
+    <main className="pagecontent">
+      <div className="content-div">
+        <AuthCheck>
+          <PostList />
+          <CreateNewPost />
+        </AuthCheck>
+      </div>
     </main>
   );
 }

@@ -1,6 +1,7 @@
 .container {
-  min-height: 100vh;
+  margin-top: 70px;
   display: flex;
+  justify-content: center;
 }
 
 .container section {
@@ -19,7 +20,13 @@
   top: 80px;
   height: 0;
 }
-
+.contenttitle {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.contentid {
+  margin-top: 0;
+}
 .hidden {
   display: none;
 }

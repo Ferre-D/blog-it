@@ -11,39 +11,52 @@ export default function PostFeed({ posts, admin = false }) {
     const wordCount = post?.content.trim().split(/\s+/g).length;
     const minutesToRead = (wordCount / 100 + 1).toFixed(0);
     return (
-      <div className="card">
-        <Link href={`/${post.username}`}>
-          <a>
-            <strong>By @{post.username}</strong>
-          </a>
-        </Link>
-        <Link href={`/${post.username}/${post.slug}`}>
-          <h2>
-            <a>{post.title}</a>
-          </h2>
-        </Link>
-        <footer>
-          <span>
-            {wordCount} words • {minutesToRead} min read
-          </span>
-          <span className="push-left">🚀 {post.rocketCount || 0} Rockets</span>
-        </footer>
-        {/* If admin view, show extra controls for user */}
-        {admin && (
-          <>
-            <Link href={`/admin/${post.slug}`}>
-              <h3>
-                <button className="btn-blue">Edit</button>
-              </h3>
-            </Link>
+      <div className="card d-flex">
+        <div className="card-content">
+          <Link href={`/${post.username}`}>
+            <a>
+              <strong>
+                By <span className="post_creator">@{post.username}</span>
+              </strong>
+            </a>
+          </Link>
+          <Link href={`/${post.username}/${post.slug}`}>
+            <h2>
+              <a>{post.title}</a>
+            </h2>
+          </Link>
+          <footer>
+            <span>
+              {wordCount} words • {minutesToRead} min read
+            </span>
+            <span className="push-left">
+              🚀 {post.rocketCount || 0} Rockets
+            </span>
+          </footer>
+          {/* If admin view, show extra controls for user */}
+          {admin && (
+            <>
+              <Link href={`/admin/${post.slug}`}>
+                <h3>
+                  <button className="btn-blue">Edit</button>
+                </h3>
+              </Link>
 
-            {post.published ? (
-              <p className="text-success">Live</p>
-            ) : (
-              <p className="text-danger">Unpublished</p>
-            )}
-          </>
-        )}
+              {post.published ? (
+                <p className="text-success">Live</p>
+              ) : (
+                <p className="text-danger">Unpublished</p>
+              )}
+            </>
+          )}
+        </div>
+        <div
+          className="card-thumbnail"
+          style={{
+            backgroundImage:
+              "url(https://i.pinimg.com/originals/5b/b4/8b/5bb48b07fa6e3840bb3afa2bc821b882.jpg)",
+          }}
+        ></div>
       </div>
     );
   }
