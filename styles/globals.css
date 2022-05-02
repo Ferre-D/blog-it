@@ -19,8 +19,21 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
 }
+
 .d-flex {
   display: flex;
+}
+.login-title{
+  text-transform: uppercase;
+  color: var(--color-primary)
+}
+.login-container{
+  padding: 2em;
+  border-radius: 20px;
+  background-color: var(--color-bg-dark);
+}
+.login-container > div{
+  width: 50%;
 }
 .banner {
   justify-content: center;
@@ -184,7 +197,7 @@ button {
 }
 
 button:hover {
-  filter: brightness(90%);
+  filter: brightness(110%);
 }
 
 button:disabled,
@@ -213,9 +226,31 @@ button.btn-green {
   background-color: var(--color-green);
   color: white;
 }
+.color-primary{
+  color: var(--color-primary);
+}
+.mr-2{
+  margin-right: 2rem;
+}
+.mr-1{
+  margin-right: 1rem;
+}
+.features-list{
+margin: 2rem 0;
 
+font-weight: bold;
+}
+.features-list p{
+  font-family: "Lato", "sans-serif";
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: var(--color-text);
+  text-shadow: 0px 1px 5px var(--color-primary)
+}
 button.btn-google {
-  background-color: white;
+  margin-top: 3.5rem;
+  background-color: var(--color-bg);
+
   color: var(--color-text);
 }
 
@@ -245,7 +280,9 @@ button.btn-logo {
   background-color: var(--color-bg-dark);
   border-radius: 8px;
 }
-
+.vh-100{
+  min-height: 100vh;
+}
 .card footer {
   display: flex;
 }

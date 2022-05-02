@@ -2,7 +2,6 @@ import Loader from "../components/Loader";
 import { firestore, fromMillis, postToJSON } from "../lib/firebase";
 import { useState } from "react";
 import PostFeed from "../components/PostFeed";
-import { Player } from "@lottiefiles/react-lottie-player";
 
 //max posts to query per page;
 const LIMIT = 1;

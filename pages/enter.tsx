@@ -3,21 +3,46 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { UserContext } from "../lib/context";
 import { auth, firestore, googleAuthProvider } from "../lib/firebase";
 import debounce from "lodash.debounce";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt, faRocket } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
 
 export default function EnterPage() {
   const { user, username } = useContext(UserContext);
+  const router = useRouter();
+  useEffect(() => {
+    if(user){
+      router.push("/")
+    }
+  }, user)
 
   return (
-    <main>
+    <main className="pagecontent">
+      <div className="content-div">
+
       {user ? (
         !username ? (
           <UsernameForm />
-        ) : (
-          <SignOutButton />
-        )
-      ) : (
-        <SignInButton />
-      )}
+          ) : (
+            <></>
+            )
+            ) : (
+              <div className="login-container d-flex">
+                <div className="">
+                  <h2 className="login-title">Start your blogging journey today</h2>
+                  <h3>Sign in and get access to a bunch of cool features like:</h3>
+                  <div className="features-list">
+                    <p><span className="">✏️</span> Write your own blogs</p>
+                    <p><span className="">🚀</span> Upvote your favorite posts</p>
+                    <p>💾 Save some awesome posts</p>
+
+                  </div>
+                <SignInButton />
+                </div>
+                <div><img src="assets/login.svg" alt="" /></div>
+              </div>
+              )}
+              </div>
     </main>
   );
 }
