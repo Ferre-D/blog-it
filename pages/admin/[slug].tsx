@@ -1,15 +1,17 @@
 import styles from "../../styles/Admin.module.css";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import AuthCheck from "../../components/AuthCheck";
-import { auth, firestore } from "../../lib/firebase";
+import { auth, firestore, STATE_CHANGED, storage } from "../../lib/firebase";
 import { useForm } from "react-hook-form";
 import ReactMarkdown from "react-markdown";
 import { serverTimestamp } from "firebase/firestore";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import ImageUploader from "../../components/ImageUploader";
+import Loader from "../../components/Loader";
+import { url } from "inspector";
 
 export default function AdminPostEdit({}) {
   return (
@@ -64,9 +66,60 @@ function PostForm({ defaultValues, postRef, preview }) {
     defaultValues,
     mode: "onChange",
   });
+  const [newThumbnail, setNewThumbnail] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [downloadURL, setDownloadURL] = useState(null);
+  const [thumbnail, setThumbnail] = useState(null);
   const { errors, isValid, isDirty } = formState;
-
+  const [thumbnailPreview, setThumbnailPreview] = useState(null);
+  useEffect(() => {
+    updatePostThumbnail();
+  }, [downloadURL]);
+  useEffect(() => {
+    const filereader = new FileReader();
+    if (!thumbnail) return;
+    const url = filereader.readAsDataURL(thumbnail);
+    filereader.onloadend = (r) => {
+      setThumbnailPreview(filereader.result);
+    };
+  }, [thumbnail]);
+  const updatePostThumbnail = async () => {
+    if (downloadURL) {
+      await postRef.update({
+        thumbnail: downloadURL,
+        updatedAt: serverTimestamp(),
+      });
+    }
+  };
   const updatePost = async ({ content, published }) => {
+    if (thumbnail) {
+      const extension = thumbnail.type.split("/")[1];
+      const ref = storage.ref(
+        `uploads/${auth.currentUser.uid}/${Date.now()}.${extension}`
+      );
+      setUploading(true);
+
+      const task = ref.put(thumbnail);
+
+      task.on(STATE_CHANGED, (snapshot) => {
+        const pct = (
+          (snapshot.bytesTransferred / snapshot.totalBytes) *
+          100
+        ).toFixed(0);
+
+        setProgress(parseInt(pct));
+
+        task
+          .then((d) => ref.getDownloadURL())
+          .catch((e) => console.log(e))
+          .then((url) => {
+            setDownloadURL(url);
+            setUploading(false);
+          })
+          .catch((e) => console.log(e));
+      });
+    }
     await postRef.update({
       content,
       published,
@@ -77,7 +130,45 @@ function PostForm({ defaultValues, postRef, preview }) {
 
     toast.success("Post updated!");
   };
+  const ThumbnailUploader = ({ watch }) => {
+    const uploadFile = async (e) => {
+      const file = Array.from(e.target.files)[0] as any;
+      setThumbnail(file);
+      setNewThumbnail(true);
+    };
 
+    return (
+      <>
+        <p className="mb-0">
+          Choose a thumbnail <sup className="text-danger">*</sup>
+        </p>
+
+        <div className="box-thumbnail">
+          <Loader show={uploading} />
+          {uploading && <h3>{progress}%</h3>}
+          {!uploading && (
+            <>
+              <label
+                className="btn btn-primary-outline thumbnail"
+                style={{
+                  backgroundImage: thumbnailPreview
+                    ? `url(${thumbnailPreview})`
+                    : `url(${watch("thumbnail")})`,
+                }}
+              >
+                📸
+                <input
+                  type="file"
+                  onChange={uploadFile}
+                  accept="image/x-png, image/gif, image/jpeg"
+                />
+              </label>
+            </>
+          )}
+        </div>
+      </>
+    );
+  };
   return (
     <form onSubmit={handleSubmit(updatePost)}>
       {preview && (
@@ -116,11 +207,12 @@ function PostForm({ defaultValues, postRef, preview }) {
             {...register("published")}
           />
           <label htmlFor="published">published</label>
+          <ThumbnailUploader watch={watch} />
         </fieldset>
         <button
           type="submit"
           className="btn-green"
-          disabled={!isDirty || !isValid}
+          disabled={(!isDirty && !newThumbnail) || !isValid}
         >
           Save Changes
         </button>

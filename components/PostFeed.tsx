@@ -53,8 +53,7 @@ export default function PostFeed({ posts, admin = false }) {
         <div
           className="card-thumbnail"
           style={{
-            backgroundImage:
-              "url(https://i.pinimg.com/originals/5b/b4/8b/5bb48b07fa6e3840bb3afa2bc821b882.jpg)",
+            backgroundImage: `url(${post.thumbnail})`,
           }}
         ></div>
       </div>
