@@ -12,7 +12,7 @@ export default function EnterPage() {
     if (user && username) {
       router.push("/");
     }
-  }, user);
+  }, [user, username]);
 
   return (
     <main className="pagecontent">
