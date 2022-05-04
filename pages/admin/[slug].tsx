@@ -93,7 +93,9 @@ function PostForm({ defaultValues, postRef, preview }) {
     }
   };
   const updatePost = async ({ content, published }) => {
-    if (thumbnail) {
+    console.log(newThumbnail);
+
+    if (thumbnail && newThumbnail) {
       const extension = thumbnail.type.split("/")[1];
       const ref = storage.ref(
         `uploads/${auth.currentUser.uid}/${Date.now()}.${extension}`
@@ -129,6 +131,8 @@ function PostForm({ defaultValues, postRef, preview }) {
     reset({ content, published });
 
     toast.success("Post updated!");
+    setNewThumbnail(false);
+    setDownloadURL(null);
   };
   const ThumbnailUploader = ({ watch }) => {
     const uploadFile = async (e) => {
@@ -172,7 +176,7 @@ function PostForm({ defaultValues, postRef, preview }) {
   const checkValid = () => {
     if (watch("thumbnail")) return (!isDirty && !newThumbnail) || !isValid;
 
-    return !newThumbnail || !isValid || !isDirty || !newThumbnail;
+    return !isValid || (!isDirty && !newThumbnail);
   };
   return (
     <form onSubmit={handleSubmit(updatePost)}>
