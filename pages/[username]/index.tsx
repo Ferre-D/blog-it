@@ -38,8 +38,10 @@ export default function UserProfilePage({ user, posts }) {
         title={`${user.username}'s posts`}
         description={`A list of all of ${user.username}'s posts`}
       />
-      <UserProfile user={user} />
-      <PostFeed posts={posts} />
+      <div className="content-div">
+        <UserProfile user={user} />
+        <PostFeed posts={posts} />
+      </div>
     </main>
   );
 }

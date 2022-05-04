@@ -1,6 +1,6 @@
 export default function UserProfile({ user }) {
   return (
-    <div className="box-center">
+    <div className="box-center d-sm-none d-md-block">
       <img src={user.photoURL} alt="user picture" className="card-img-center" />
       <p>
         <i>@{user.username}</i>

@@ -169,6 +169,11 @@ function PostForm({ defaultValues, postRef, preview }) {
       </>
     );
   };
+  const checkValid = () => {
+    if (watch("thumbnail")) return (!isDirty && !newThumbnail) || !isValid;
+
+    return !newThumbnail || !isValid || !isDirty || !newThumbnail;
+  };
   return (
     <form onSubmit={handleSubmit(updatePost)}>
       {preview && (
@@ -209,11 +214,7 @@ function PostForm({ defaultValues, postRef, preview }) {
           <label htmlFor="published">published</label>
           <ThumbnailUploader watch={watch} />
         </fieldset>
-        <button
-          type="submit"
-          className="btn-green"
-          disabled={(!isDirty && !newThumbnail) || !isValid}
-        >
+        <button type="submit" className="btn-green" disabled={checkValid()}>
           Save Changes
         </button>
       </div>

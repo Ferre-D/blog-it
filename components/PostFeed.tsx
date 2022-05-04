@@ -25,31 +25,29 @@ export default function PostFeed({ posts, admin = false }) {
               <a>{post.title}</a>
             </h2>
           </Link>
-          <footer className="pos-relative">
+          <footer className="post-footer">
             <span>
               {wordCount} words • {minutesToRead} min read
             </span>
-            <span className="pos-bottom-right">
-              🚀 {post.rocketCount || 0} Rockets
+            <span className="rocket-count">
+              🚀 {post.rocketCount || 0} Rocket
+              {post.rocketCount != 1 ? "s" : ""}
             </span>
           </footer>
           {/* If admin view, show extra controls for user */}
           {admin && (
             <>
               <div className="top-right d-flex controls">
-              <Link href={`/admin/${post.slug}`}>
-                <p
-                  className="edit">Edit
-                </p>
-              </Link>
-
+                <Link href={`/admin/${post.slug}`}>
+                  <p className="edit">Edit</p>
+                </Link>
               </div>
               {post.published ? (
                 <p className="text-success">Live</p>
               ) : (
                 <p className="text-danger">Unpublished</p>
               )}
-              </>
+            </>
           )}
         </div>
         <div

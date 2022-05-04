@@ -65,7 +65,7 @@ export default function Home(props) {
 
       <Loader show={loading} />
 
-      {postEnd && "No more posts to show!"}
+      {postEnd && <b>All done!</b>}
     </main>
   );
 }

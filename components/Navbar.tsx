@@ -1,10 +1,14 @@
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { UserContext } from "../lib/context";
+import { useOutsideClick } from "../hooks/useOutsideClick";
+import { auth } from "../lib/firebase";
 
 export default function Navbar() {
+  const impactRef = useRef();
   const { user, username } = useContext(UserContext);
-
+  const [showNav, setShowNav] = useState(false);
+  useOutsideClick(impactRef, () => setShowNav(false));
   return (
     <nav className="navbar">
       <ul>
@@ -21,10 +25,18 @@ export default function Navbar() {
                 <button className="btn-blue">Write Posts</button>
               </Link>
             </li>
-            <li>
-              <Link href={`/${username}`}>
-                <img src={user?.photoURL} referrerPolicy="no-referrer" />
-              </Link>
+            <li className="dropdown" ref={impactRef}>
+              <img
+                src={user?.photoURL}
+                referrerPolicy="no-referrer"
+                onClick={() => setShowNav(!showNav)}
+              />
+              <div className={`dropdown-content ${showNav && "show-nav"}`}>
+                <Link href={`/${username}`}>
+                  <p>My profile</p>
+                </Link>
+                <p onClick={() => auth.signOut()}>Logout</p>
+              </div>
             </li>
           </>
         )}

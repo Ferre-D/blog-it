@@ -33,7 +33,7 @@ body {
   background-color: var(--color-bg-dark);
 }
 .login-container > div {
-  width: 50%;
+  width: 100%;
 }
 .banner {
   justify-content: center;
@@ -41,10 +41,10 @@ body {
   margin-top: 70px;
 }
 .banner-content {
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   align-self: baseline;
 
-  width: 65%;
+  width: 100%;
 }
 .nav-title {
   font-size: 1.5rem;
@@ -55,6 +55,7 @@ body {
 .banner-image {
   width: 35%;
   padding: 2rem;
+  display: none;
 }
 
 .banner-image div {
@@ -80,15 +81,14 @@ main {
   padding: 4rem;
 }
 h1 {
-  font-size: 2rem;
-}
-h2 {
-  font-size: 1.5rem;
-}
-h2 {
   font-size: 1.25rem;
 }
-
+h2 {
+  font-size: 0.85rem;
+}
+h3 {
+  font-size: 0.75rem;
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -127,17 +127,17 @@ code {
   margin-top: 70px;
 }
 .pagecontent {
-  width: 60vw;
+  width: 95vw;
   margin: 0 auto;
 }
 .navbar {
   height: 70px;
   width: 100%;
-  background: transparent;
+  background: var(--color-bg);
   color: var(--colors-text);
   position: fixed;
   top: 0;
-  padding: 0 2rem;
+  padding: 0 1.2rem;
   font-weight: bold;
   z-index: 99;
 }
@@ -163,6 +163,19 @@ code {
   border-radius: 50%;
 }
 
+.dropdown-content {
+  transform: translateX(-15px);
+
+  display: none;
+  border-radius: 10px;
+  background-color: var(--color-bg-dark);
+  padding: 1rem;
+  position: absolute;
+  cursor: pointer;
+}
+.show-nav {
+  display: block;
+}
 /* Buttons */
 
 .btn,
@@ -253,17 +266,12 @@ button.btn-google {
 
   color: var(--color-text);
 }
-.pos-relative{
+.pos-relative {
   position: relative;
 }
-.top-right{
+.top-right {
   position: absolute;
   top: 5px;
-  right: 5px;
-}
-.pos-bottom-right{
-  position: absolute;
-  bottom: 5px;
   right: 5px;
 }
 
@@ -283,6 +291,26 @@ button.btn-logo {
 /* Cards */
 .post_creator {
   color: var(--color-primary);
+}
+.post-footer {
+  display: flex;
+  flex-direction: column;
+}
+.rocket-count {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.post-content-card {
+  width: 100%;
+  margin: 1rem auto;
+  color: white;
+  background-color: var(--color-bg-dark);
+  border-radius: 8px;
+  padding: 1rem 0.75rem;
+  width: 85%;
+  overflow: hidden;
+  overflow-wrap: break-word;
 }
 .card {
   overflow: hidden;
@@ -312,11 +340,14 @@ button.btn-logo {
   color: white;
   background: var(--color-blue);
 }
-.controls{
+.controls {
   align-items: center;
 }
 /* Loader */
 .card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 170px;
   padding: 2rem 1rem;
   align-self: center;
@@ -363,7 +394,7 @@ input[type="file"] {
 .upload-snippet {
   width: 75%;
   margin-left: auto;
-  background: white;
+  background: var(--color-bg-dark);
   padding: 5px;
   margin: 5px 0;
 }
@@ -417,7 +448,48 @@ input[type="file"] {
   align-content: center;
   text-align: center;
 }
-
+.d-sm-none {
+  display: none;
+}
 .hidden {
   display: none;
+}
+.banner-content h3 {
+  font-size: 1.5rem;
+}
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.35rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+  }
+  .rocket-count {
+    bottom: 15px;
+    right: 15px;
+  }
+  .banner-content {
+    width: 65%;
+  }
+  .banner-content h3 {
+    font-size: 2.5rem;
+  }
+  .pagecontent {
+    width: 60vw;
+  }
+  .banner-image {
+    display: block;
+  }
+  .d-md-block {
+    display: block;
+  }
+  .navbar {
+    padding: 0 5rem;
+  }
+  .login-container > div {
+    width: 50%;
+  }
 }

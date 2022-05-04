@@ -3,7 +3,10 @@
   display: flex;
   justify-content: center;
 }
-
+.post-footer {
+  display: flex;
+  flex-direction: column;
+}
 .container section {
   width: 60vw;
   margin-right: 1rem;

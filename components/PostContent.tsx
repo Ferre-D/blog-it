@@ -8,7 +8,7 @@ export default function PostContent({ post }) {
       ? new Date(post.createdAt)
       : post.createdAt.toDate();
   return (
-    <div className="card card-content">
+    <div className="post-content-card">
       <h1>{post?.title}</h1>
       <span className="text-sm">
         Written by{" "}
