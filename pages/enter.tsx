@@ -9,7 +9,7 @@ export default function EnterPage() {
   const { user, username } = useContext(UserContext);
   const router = useRouter();
   useEffect(() => {
-    if (user) {
+    if (user && username) {
       router.push("/");
     }
   }, user);
@@ -74,6 +74,7 @@ function UsernameMessage({ username, isValid, loading }) {
 }
 
 function UsernameForm() {
+  const router = useRouter();
   const [formValue, setFormValue] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -94,6 +95,7 @@ function UsernameForm() {
     batch.set(usernameDoc, { uid: user.uid });
 
     await batch.commit();
+    router.push("/");
   };
   const onChange = (e) => {
     const val = e.target.value.toLowerCase();
