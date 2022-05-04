@@ -253,6 +253,19 @@ button.btn-google {
 
   color: var(--color-text);
 }
+.pos-relative{
+  position: relative;
+}
+.top-right{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.pos-bottom-right{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
 
 .btn-google img {
   width: 30px;
@@ -299,15 +312,23 @@ button.btn-logo {
   color: white;
   background: var(--color-blue);
 }
-
+.controls{
+  align-items: center;
+}
 /* Loader */
 .card-content {
-  padding: 1rem;
+  height: 170px;
+  padding: 2rem 1rem;
   align-self: center;
 
   width: 70%;
 }
-
+.edit {
+  color: var(--color-primary);
+  font-weight: bold;
+  margin-right: 1rem;
+  cursor: pointer;
+}
 .card-thumbnail {
   width: 30%;
   max-height: 100%;

@@ -17,6 +17,7 @@ export default function AdminPostsPage({}) {
         <AuthCheck>
           <PostList />
           <CreateNewPost />
+
         </AuthCheck>
       </div>
     </main>
