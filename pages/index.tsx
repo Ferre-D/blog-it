@@ -78,7 +78,7 @@ function Banner() {
       </div>
       <div className="banner-image">
         <div>
-          <Image src="assets/banner.svg" alt="banner" />
+          <img className="image" src="/assets/banner.svg" alt="banner" />
         </div>
       </div>
     </div>
