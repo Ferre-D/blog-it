@@ -15,7 +15,7 @@ const firebaseConfig = {
 };
 if (!firebase.apps.length) {
   const app = firebase.initializeApp(firebaseConfig);
-  firebase.analytics.isSupported() && getAnalytics(app);
+  getAnalytics(app);
 }
 
 export const auth = firebase.auth();
