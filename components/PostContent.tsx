@@ -1,6 +1,5 @@
 import Link from "next/link";
 import ReactMarkDown from "react-markdown";
-import { fromMillis } from "../lib/firebase";
 
 export default function PostContent({ post }) {
   const createdAt =

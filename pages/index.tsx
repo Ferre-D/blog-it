@@ -2,6 +2,7 @@ import Loader from "../components/Loader";
 import { firestore, fromMillis, postToJSON } from "../lib/firebase";
 import { useState } from "react";
 import PostFeed from "../components/PostFeed";
+import Image from "next/image";
 
 //max posts to query per page;
 const LIMIT = 1;
@@ -77,7 +78,7 @@ function Banner() {
       </div>
       <div className="banner-image">
         <div>
-          <img src="assets/banner.svg" alt="banner" />
+          <Image src="assets/banner.svg" alt="banner" />
         </div>
       </div>
     </div>

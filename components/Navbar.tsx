@@ -3,6 +3,7 @@ import { useContext, useRef, useState } from "react";
 import { UserContext } from "../lib/context";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 import { auth } from "../lib/firebase";
+import Image from "next/image";
 
 export default function Navbar() {
   const impactRef = useRef();
@@ -21,18 +22,19 @@ export default function Navbar() {
         {username && (
           <>
             <li className="push-left">
-              <Link href="/admin">
+              <Link href="/admin" passHref>
                 <button className="btn-blue">Write Posts</button>
               </Link>
             </li>
             <li className="dropdown" ref={impactRef}>
-              <img
+              <Image
+                alt="user profile"
                 src={user?.photoURL}
                 referrerPolicy="no-referrer"
                 onClick={() => setShowNav(!showNav)}
               />
               <div className={`dropdown-content ${showNav && "show-nav"}`}>
-                <Link href={`/${username}`}>
+                <Link href={`/${username}`} passHref>
                   <p>My profile</p>
                 </Link>
                 <p onClick={() => auth.signOut()}>Logout</p>
@@ -43,7 +45,7 @@ export default function Navbar() {
         {/* user is not signed in and has username*/}
         {!username && (
           <li>
-            <Link href="/enter">
+            <Link href="/enter" passHref>
               <button className="btn-blue">Log in</button>
             </Link>
           </li>

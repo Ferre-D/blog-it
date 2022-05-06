@@ -20,7 +20,7 @@ export default function PostFeed({ posts, admin = false }) {
               </strong>
             </a>
           </Link>
-          <Link href={`/${post.username}/${post.slug}`}>
+          <Link passHref href={`/${post.username}/${post.slug}`}>
             <h2>
               <a>{post.title}</a>
             </h2>
@@ -38,7 +38,7 @@ export default function PostFeed({ posts, admin = false }) {
           {admin && (
             <>
               <div className="top-right d-flex controls">
-                <Link href={`/admin/${post.slug}`}>
+                <Link passHref href={`/admin/${post.slug}`}>
                   <p className="edit">Edit</p>
                 </Link>
               </div>

@@ -4,6 +4,7 @@ import { UserContext } from "../lib/context";
 import { auth, firestore, googleAuthProvider } from "../lib/firebase";
 import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function EnterPage() {
   const { user, username } = useContext(UserContext);
@@ -43,7 +44,7 @@ export default function EnterPage() {
               <SignInButton />
             </div>
             <div className="d-sm-none d-md-block">
-              <img src="assets/login.svg" alt="" />
+              <Image src="assets/login.svg" alt="login illustration"></Image>
             </div>
           </div>
         )}
@@ -57,7 +58,7 @@ function SignInButton() {
   };
   return (
     <button className="btn-google" onClick={() => SignInWithGoogle()}>
-      <img src="assets/google.png" /> Sign in with Google
+      <Image alt="google logo" src="assets/google.png" /> Sign in with Google
     </button>
   );
 }

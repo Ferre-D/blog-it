@@ -66,7 +66,7 @@ export default function PostPage(props) {
         </p>
         <AuthCheck
           fallback={
-            <Link href={"/enter"}>
+            <Link passHref href={"/enter"}>
               <button>Sign up</button>
             </Link>
           }
