@@ -5,6 +5,7 @@ import { auth, firestore, googleAuthProvider } from "../lib/firebase";
 import debounce from "lodash.debounce";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Metatags from "../components/Metatags";
 
 export default function EnterPage() {
   const { user, username } = useContext(UserContext);
@@ -17,6 +18,7 @@ export default function EnterPage() {
 
   return (
     <main className="pagecontent">
+      <Metatags title="login" />
       <div className="content-div">
         {user ? (
           !username ? (

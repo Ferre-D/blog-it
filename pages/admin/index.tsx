@@ -9,15 +9,22 @@ import { auth, firestore } from "../../lib/firebase";
 import kebabCase from "lodash.kebabcase";
 import { doc, serverTimestamp } from "firebase/firestore";
 import toast from "react-hot-toast";
+import Metatags from "../../components/Metatags";
 
 export default function AdminPostsPage({}) {
   return (
     <main className="pagecontent">
+      <Metatags
+        title={
+          auth.currentUser
+            ? `Admin | ${auth.currentUser?.displayName}`
+            : "Admin invalid"
+        }
+      />
       <div className="content-div">
         <AuthCheck>
           <PostList />
           <CreateNewPost />
-
         </AuthCheck>
       </div>
     </main>

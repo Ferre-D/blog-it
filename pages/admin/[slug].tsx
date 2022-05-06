@@ -12,6 +12,7 @@ import Link from "next/link";
 import ImageUploader from "../../components/ImageUploader";
 import Loader from "../../components/Loader";
 import { url } from "inspector";
+import Metatags from "../../components/Metatags";
 
 export default function AdminPostEdit({}) {
   return (
@@ -37,6 +38,7 @@ function PostManager() {
     <main className={styles.container}>
       {post && (
         <>
+          <Metatags title={slug + " | Admin"} />
           <section>
             <h1 className={styles.contenttitle}>{post.title}</h1>
             <p className={styles.contentid}>ID: {post.slug}</p>

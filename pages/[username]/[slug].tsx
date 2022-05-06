@@ -6,6 +6,7 @@ import PostContent from "../../components/PostContent";
 import AuthCheck from "../../components/AuthCheck";
 import RocketButton from "../../components/RocketButton";
 import Link from "next/link";
+import Metatags from "../../components/Metatags";
 
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
@@ -56,6 +57,7 @@ export default function PostPage(props) {
 
   return (
     <main className={styles.container}>
+      <Metatags title={"Post | " + post.title} />
       <section>
         <PostContent post={post} />
       </section>

@@ -3,6 +3,7 @@ import { firestore, fromMillis, postToJSON } from "../lib/firebase";
 import { useState } from "react";
 import PostFeed from "../components/PostFeed";
 import Image from "next/image";
+import Metatags from "../components/Metatags";
 
 //max posts to query per page;
 const LIMIT = 1;
@@ -55,6 +56,7 @@ export default function Home(props) {
 
   return (
     <main className="pagecontent">
+      <Metatags title="Homepage" />
       <Banner />
       <PostFeed posts={posts} />
 

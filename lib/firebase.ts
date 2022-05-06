@@ -2,7 +2,6 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import "firebase/compat/storage";
-import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCGjAvibjuv0V7_3wkFbneykD60kv4uh_M",
@@ -11,11 +10,11 @@ const firebaseConfig = {
   storageBucket: "blog-it-f4dd7.appspot.com",
   messagingSenderId: "666134329622",
   appId: "1:666134329622:web:9f82c807aeaeb69d2fb837",
-  measurementId: "G-GH6KWE53Q3",
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
+
 if (!firebase.apps.length) {
   const app = firebase.initializeApp(firebaseConfig);
-  getAnalytics(app);
 }
 
 export const auth = firebase.auth();
