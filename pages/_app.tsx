@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.FIREBASE_MEASUREMENT_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=G-GH6KWE53Q3`}
         strategy="afterInteractive"
       />
       <Script id="google-analytics-script">
@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }) {
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
         
-          gtag('config', '${process.env.FIREBASE_MEASUREMENT_ID}');
+          gtag('config', 'G-GH6KWE53Q3ENT_ID}');
           `}
       </Script>
       <UserContext.Provider value={userData}>

@@ -1,6 +1,6 @@
 export const pageview = (url) => {
   const window = global.window as any;
-  window.gtag("config", process.env.FIREBASE_MEASUREMENT_ID, {
+  window.gtag("config", "G-GH6KWE53Q3", {
     path_url: url,
   });
 };

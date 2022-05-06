@@ -10,7 +10,7 @@ const firebaseConfig = {
   storageBucket: "blog-it-f4dd7.appspot.com",
   messagingSenderId: "666134329622",
   appId: "1:666134329622:web:9f82c807aeaeb69d2fb837",
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+  measurementId: "G-GH6KWE53Q3",
 };
 
 if (!firebase.apps.length) {
