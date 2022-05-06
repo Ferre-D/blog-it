@@ -44,7 +44,7 @@ export default function EnterPage() {
               <SignInButton />
             </div>
             <div className="d-sm-none d-md-block">
-              <Image src="assets/login.svg" alt="login illustration"></Image>
+              <img src="assets/login.svg" alt="login illustration" />
             </div>
           </div>
         )}
@@ -58,7 +58,7 @@ function SignInButton() {
   };
   return (
     <button className="btn-google" onClick={() => SignInWithGoogle()}>
-      <Image alt="google logo" src="assets/google.png" /> Sign in with Google
+      <img alt="google logo" src="assets/google.png" /> Sign in with Google
     </button>
   );
 }
