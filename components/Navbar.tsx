@@ -28,7 +28,6 @@ export default function Navbar() {
             </li>
             <li className="dropdown" ref={impactRef}>
               <img
-                layout="fill"
                 alt="user profile"
                 src={user?.photoURL}
                 referrerPolicy="no-referrer"
