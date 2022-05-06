@@ -15,7 +15,7 @@ const firebaseConfig = {
 };
 if (!firebase.apps.length) {
   const app = firebase.initializeApp(firebaseConfig);
-  getAnalytics(app);
+  window && getAnalytics(app);
 }
 
 export const auth = firebase.auth();
