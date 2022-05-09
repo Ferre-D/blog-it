@@ -18,7 +18,7 @@ export default function EnterPage() {
 
   return (
     <main className="pagecontent">
-      <Metatags title="login" />
+      <Metatags title="Login" />
       <div className="content-div">
         {user ? (
           !username ? (
