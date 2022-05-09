@@ -56,7 +56,7 @@ export default function Home(props) {
 
   return (
     <main className="pagecontent">
-      <Metatags title="Homepage" />
+      <Metatags description="A place where you can read about some awesome IT related topics. If you're interested you can even write your own posts! Created by Ferre Donné" title="Homepage" />
       <Banner />
       <PostFeed posts={posts} />
 
